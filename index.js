@@ -13,6 +13,53 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Add scroll effect to navbar
+window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(44, 62, 80, 0.98)';
+    } else {
+        navbar.style.background = 'rgba(44, 62, 80, 0.95)';
+    }
+});
+
+// Add hover effect to profile picture
+const profilePic = document.querySelector('.profile-pic');
+profilePic.addEventListener('mouseenter', function () {
+    this.style.transform = 'scale(1.05)';
+    this.style.transition = 'transform 0.3s ease';
+});
+
+profilePic.addEventListener('mouseleave', function () {
+    this.style.transform = 'scale(1)';
+});
+
+// Parallax effect for floating elements
+window.addEventListener('scroll', function () {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelectorAll('.floating-element');
+    const speed = 0.5;
+
+    parallax.forEach(element => {
+        const yPos = -(scrolled * speed);
+        element.style.transform = `translateY(${yPos}px)`;
+    });
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
 // Navbar background change on scroll
 window.addEventListener('scroll', function () {
     const navbar = document.querySelector('.navbar');
